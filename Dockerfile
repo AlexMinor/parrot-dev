@@ -35,3 +35,13 @@ RUN apt install -y parrot-airsdk-cli
 RUN apt-get install python3-pip libgl1 -y
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install parrot-olympe
+
+# create user parrot
+RUN useradd -m -p '' parrot
+RUN usermod -aG sudo parrot
+
+RUN chmod a+xr /opt/dotfiles -R
+
+USER parrot
+RUN anyconfig -s -i zsh/config.yml zsh/fzf.yml zsh/ohmyzsh.yml
+RUN anyconfig -s -i nvim/nvim.yml nvim/config.yml nvim/vim_alias.yml 

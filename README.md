@@ -31,10 +31,10 @@ cd <name> && pwd
 ```
 #### Start container
 ``` bash
-docker run --name -it parrot-dev -v <path>:/root/<name> --net=host --privileged -e "TERM=xterm-256color" -h parrot-dev alexminor/parrot-dev:latest /bin/zsh
+docker run -it --name parrot-dev -v <path>:/home/parrot/ --net=host --privileged -e "TERM=xterm-256color" --add-host 'parrot-dev:127.0.1.1' --add-host 'anafi-ai.local:192.168.42.1' -h parrot-dev --user parrot parrot-dev:latest /bin/zsh
 ```
 ## 4. To open the container after this
 ``` bash
 docker start parrot-dev
-docker exex -it parrot-dev /bin/zsh
+docker exex --user parrot -it parrot-dev /bin/zsh
 ```
